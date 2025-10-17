@@ -19,7 +19,6 @@ export function Contact() {
     message: ''
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -30,21 +29,27 @@ export function Contact() {
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
     
-    // Simulate form submission
+    // Create mailto link with form data
+    const subject = encodeURIComponent(formData.subject || 'Message from Portfolio Contact Form')
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    )
+    const mailtoLink = `mailto:gmaduzsanka03@gmail.com?subject=${subject}&body=${body}`
+    
+    // Open email client
+    window.location.href = mailtoLink
+    
+    // Show success message
+    setSubmitStatus('success')
+    setFormData({ name: '', email: '', subject: '', message: '' })
+    
+    // Reset status after 3 seconds
     setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      
-      // Reset status after 3 seconds
-      setTimeout(() => {
-        setSubmitStatus('idle')
-      }, 3000)
-    }, 2000)
+      setSubmitStatus('idle')
+    }, 3000)
   }
 
   const contactInfo = [
@@ -276,26 +281,12 @@ export function Contact() {
 
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
-                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                className={`w-full px-6 py-3 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
-                  isSubmitting
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-primary-600 hover:bg-primary-700 shadow-lg hover:shadow-xl'
-                } text-white`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full px-6 py-3 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 shadow-lg hover:shadow-xl text-white"
               >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="h-5 w-5" />
-                    Send Message
-                  </>
-                )}
+                <Send className="h-5 w-5" />
+                Send Message
               </motion.button>
 
               {/* Status Messages */}
@@ -308,7 +299,7 @@ export function Contact() {
                   <div className="flex items-center">
                     <MessageCircle className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
                     <p className="text-green-800 dark:text-green-200 font-medium">
-                      Thank you! Your message has been sent successfully. I'll get back to you soon.
+                      Thank you! Your email client should now open with the message ready to send to gmaduzsanka03@gmail.com
                     </p>
                   </div>
                 </motion.div>
