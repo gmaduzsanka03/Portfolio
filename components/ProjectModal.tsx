@@ -170,14 +170,14 @@ export function ProjectModal({ project, isOpen, onClose, isDesignProject = false
                         <Calendar className="h-5 w-5 text-primary-600 dark:text-primary-400" />
                         <div>
                           <p className="text-sm text-gray-500 dark:text-gray-400">Duration</p>
-                          <p className="font-medium text-gray-900 dark:text-white">{project.duration}</p>
+                          <p className="font-medium text-gray-900 dark:text-white">{(project as any).duration || 'N/A'}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                         <Users className="h-5 w-5 text-primary-600 dark:text-primary-400" />
                         <div>
                           <p className="text-sm text-gray-500 dark:text-gray-400">Team</p>
-                          <p className="font-medium text-gray-900 dark:text-white">{project.team}</p>
+                          <p className="font-medium text-gray-900 dark:text-white">{(project as any).team || 'N/A'}</p>
                         </div>
                       </div>
                     </div>
@@ -197,7 +197,7 @@ export function ProjectModal({ project, isOpen, onClose, isDesignProject = false
                             <Maximize2 className="h-5 w-5 text-primary-600 dark:text-primary-400" />
                             <div>
                               <p className="text-sm text-gray-500 dark:text-gray-400">Impact</p>
-                              <p className="font-medium text-gray-900 dark:text-white">{project.impact}</p>
+                              <p className="font-medium text-gray-900 dark:text-white">{(project as any).impact || 'N/A'}</p>
                             </div>
                           </div>
                         </div>
@@ -244,13 +244,13 @@ export function ProjectModal({ project, isOpen, onClose, isDesignProject = false
                     {!isDesign && (
                       <>
                         {/* Key Features */}
-                        {project.features && project.features.length > 0 && (
+                        {(project as any).features && (project as any).features.length > 0 && (
                           <div>
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                               Key Features
                             </h3>
                             <ul className="space-y-2">
-                              {project.features.map((feature, index) => (
+                              {(project as any).features.map((feature: string, index: number) => (
                                 <li key={index} className="flex items-start gap-2">
                                   <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
                                   <span className="text-gray-600 dark:text-gray-300">{feature}</span>
@@ -261,13 +261,13 @@ export function ProjectModal({ project, isOpen, onClose, isDesignProject = false
                         )}
 
                         {/* Technologies */}
-                        {project.technologies && project.technologies.length > 0 && (
+                        {(project as any).technologies && (project as any).technologies.length > 0 && (
                           <div>
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                               Technologies
                             </h3>
                             <div className="flex flex-wrap gap-2">
-                              {project.technologies.map((tech, index) => (
+                              {(project as any).technologies.map((tech: string, index: number) => (
                                 <span
                                   key={index}
                                   className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full"
@@ -283,9 +283,9 @@ export function ProjectModal({ project, isOpen, onClose, isDesignProject = false
 
                     {/* Action Buttons */}
                     <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-                      {project.liveUrl && (
+                      {(project as any).liveUrl && (
                         <motion.a
-                          href={project.liveUrl}
+                          href={(project as any).liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.05 }}
@@ -296,9 +296,9 @@ export function ProjectModal({ project, isOpen, onClose, isDesignProject = false
                           View Live
                         </motion.a>
                       )}
-                      {project.githubUrl && (
+                      {(project as any).githubUrl && (
                         <motion.a
-                          href={project.githubUrl}
+                          href={(project as any).githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.05 }}
@@ -309,9 +309,9 @@ export function ProjectModal({ project, isOpen, onClose, isDesignProject = false
                           Code
                         </motion.a>
                       )}
-                      {project.pdfUrl && (
+                      {(project as any).pdfUrl && (
                         <motion.a
-                          href={project.pdfUrl}
+                          href={(project as any).pdfUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.05 }}
