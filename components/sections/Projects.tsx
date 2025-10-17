@@ -2,11 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ExternalLink, Github, Calendar, Users, Award, ChevronRight, ChevronLeft, Edit, Plus, Trash2 } from 'lucide-react'
+import { ExternalLink, Github, Calendar, Users, Award, ChevronRight, ChevronLeft } from 'lucide-react'
 import { useState } from 'react'
-import { featuredProjects, addProject, updateProject, deleteProject, Project, DesignProject } from '../../data/projects'
-import { useAdmin } from '../AdminContext'
-import { ProjectEditForm } from '../admin/ProjectEditForm'
+import { featuredProjects, Project } from '../../data/projects'
+import { ProjectModal } from '../ProjectModal'
 
 export function Projects() {
   const [ref, inView] = useInView({
@@ -15,24 +14,17 @@ export function Projects() {
   })
 
   const [showAllProjects, setShowAllProjects] = useState(false)
-  const [editingProject, setEditingProject] = useState<Project | null>(null)
-  const [isAddingProject, setIsAddingProject] = useState(false)
-  const { isAdmin } = useAdmin()
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleSaveProject = (projectData: Project | DesignProject) => {
-    if (editingProject) {
-      updateProject(editingProject.id, projectData as Project)
-    } else {
-      addProject(projectData as Project)
-    }
-    setEditingProject(null)
-    setIsAddingProject(false)
+  const handleViewDetails = (project: Project) => {
+    setSelectedProject(project)
+    setIsModalOpen(true)
   }
 
-  const handleDeleteProject = (id: string) => {
-    if (confirm('Are you sure you want to delete this project?')) {
-      deleteProject(id)
-    }
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedProject(null)
   }
 
   return (
@@ -64,25 +56,6 @@ export function Projects() {
               transition={{ delay: index * 0.2, duration: 0.6 }}
               className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 relative group"
             >
-              {/* Admin Controls */}
-              {isAdmin && (
-                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                  <button
-                    onClick={() => setEditingProject(project)}
-                    className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                    title="Edit Project"
-                  >
-                    <Edit className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={() => handleDeleteProject(project.id)}
-                    className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                    title="Delete Project"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </div>
-              )}
               {/* Project Image */}
               <div className="h-48 overflow-hidden">
                 {project.image ? (
@@ -174,6 +147,7 @@ export function Projects() {
                 {/* Action Buttons */}
                 <div className="flex gap-3">
                   <motion.button
+                    onClick={() => handleViewDetails(project)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium transition-colors duration-200 flex items-center justify-center gap-2"
@@ -195,25 +169,6 @@ export function Projects() {
           ))}
         </div>
 
-        {/* Admin Add Project Button */}
-        {isAdmin && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-center mt-8"
-          >
-            <motion.button
-              onClick={() => setIsAddingProject(true)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors duration-200 mx-auto"
-            >
-              <Plus className="h-5 w-5" />
-              Add New Project
-            </motion.button>
-          </motion.div>
-        )}
 
         {/* Expand/Collapse Button */}
         {featuredProjects.length > 5 && (
@@ -264,19 +219,13 @@ export function Projects() {
         </motion.div>
       </div>
 
-      {/* Edit Form */}
-      {(editingProject || isAddingProject) && (
-        <ProjectEditForm
-          project={editingProject || undefined}
-          isDesignProject={false}
-          onSave={handleSaveProject}
-          onDelete={handleDeleteProject}
-          onClose={() => {
-            setEditingProject(null)
-            setIsAddingProject(false)
-          }}
-        />
-      )}
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        isDesignProject={false}
+      />
     </section>
   )
 }

@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Building2, Calendar, MapPin, ExternalLink, Users, Award } from 'lucide-react'
 import { organizations } from '../../data/organizations'
-import { useAdmin } from '../AdminContext'
 
 export function Organizations() {
   const [ref, inView] = useInView({
@@ -12,7 +11,6 @@ export function Organizations() {
     threshold: 0.1,
   })
 
-  const { isAdmin } = useAdmin()
 
   const getTypeIcon = (type: string) => {
     switch (type) {

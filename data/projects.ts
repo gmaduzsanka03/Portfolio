@@ -39,7 +39,7 @@ export const featuredProjects: Project[] = [
     id: 'proj-1',
     title: 'Multi-medium Multi-purpose Drone & Autonomous Solar Panel Cleaning Robot',
     description: 'Final Year Research (Interdisciplinary) Project - A comprehensive mechatronic solution combining mechanical design, control systems, and sensor integration for autonomous solar panel maintenance. The system features multi-medium capabilities and autonomous operation for efficient solar panel cleaning.',
-    image: '/photos/placeholder-project.jpg',
+    image: '',
     technologies: ['Mechatronics', 'Control Systems', 'Sensor Integration', 'Autonomous Systems', 'CAD Design', 'Prototyping'],
     duration: '2024 - 2025',
     team: 'Research Team',
@@ -58,7 +58,7 @@ export const featuredProjects: Project[] = [
     id: 'proj-2',
     title: 'Semi automated material Handling conveyor',
     description: 'Internship project involving the complete design and implementation of a semi-automated belt assembly system. Included dimensional survey, material selection, structural analysis, and compliance with manufacturing standards for optimal performance.',
-    image: '/photos/semi-automated-conveyor-3d-render.jpg',
+    image: '/photos/1.png',
     technologies: ['SolidWorks', 'Structural Analysis', 'Material Selection', 'Manufacturing Standards', 'Dimensional Survey'],
     duration: '2025',
     team: 'Internship Team',
@@ -70,11 +70,11 @@ export const featuredProjects: Project[] = [
       'Manufacturing compliance',
       'Performance optimization'
     ],
-    gallery: [
-      '/photos/semi-automated-conveyor-3d-render.jpg',
-      '/photos/shearing-machine-technical-drawing.jpg',
-      '/photos/conveyor-engineering-drawing.jpg'
-    ],
+     gallery: [
+       '/photos/1.png',
+       '/photos/2.png',
+       '/photos/3.png',
+     ],
     featured: true,
     order: 2
   },
@@ -82,7 +82,7 @@ export const featuredProjects: Project[] = [
     id: 'proj-3',
     title: 'Overhead Gantry Crane Design (5 Ton, Dual-Axis)',
     description: 'Led the design and documentation of a dual-axis overhead gantry crane with 5-ton capacity. Focused on safety, load capacity optimization, and strict adherence to engineering regulations and safety standards.',
-    image: '/photos/placeholder-project.jpg',
+    image: '',
     technologies: ['Structural Design', 'Safety Engineering', 'Load Analysis', 'Engineering Regulations', 'Technical Documentation'],
     duration: '2025',
     team: 'Design Team',
@@ -112,6 +112,14 @@ export const featuredProjects: Project[] = [
       'Structural calculations',
       'Feasibility analysis',
       'Investment appraisal'
+    ],
+    gallery: [
+      '/photos/5.jpg',
+      '/photos/6.jpg',
+      '/photos/7.jpg',
+      '/photos/8.jpg',
+      '/photos/9.jpg',
+      '/photos/10.jpg',
     ],
     featured: true,
     order: 4
@@ -167,7 +175,7 @@ export const designProjects: DesignProject[] = [
     id: 'design-1',
     title: 'Multi-purpose Drone Mechanical Design',
     description: 'Complete mechanical design of the drone system for autonomous solar panel cleaning, including frame structure, landing gear, and cleaning mechanism integration.',
-    image: '/photos/multi-purpose-drone-3d-render.jpg',
+    image: '/photos/11.jpg',
     category: 'Mechatronics',
     year: '2024-2025',
     status: 'In Development',
@@ -178,7 +186,7 @@ export const designProjects: DesignProject[] = [
       'Modular Design'
     ],
     tools: ['SolidWorks', 'Structural Analysis', 'Aerospace Design', 'Integration Design'],
-    gallery: ['/photos/multi-purpose-drone-3d-render.jpg'],
+    gallery: [''],
     featured: true,
     order: 1
   },
@@ -197,7 +205,7 @@ export const designProjects: DesignProject[] = [
       'Metallic Assembly'
     ],
     tools: ['SolidWorks', 'Mechanical Design', 'Assembly Design', 'CAD Modeling'],
-    gallery: ['/photos/stirling engine.jpg'],
+    gallery: [''],
     featured: true,
     order: 2
   },
@@ -216,7 +224,7 @@ export const designProjects: DesignProject[] = [
       'Bearing Integration'
     ],
     tools: ['SolidWorks', 'Gear Design', 'Mechanical Analysis', 'CAD Modeling'],
-    gallery: ['/photos/gear speed reducer.jpg'],
+    gallery: [''],
     featured: true,
     order: 3
   },
@@ -224,7 +232,7 @@ export const designProjects: DesignProject[] = [
     id: 'design-4',
     title: 'Belt Assembly System',
     description: 'Complete belt assembly system with horizontal and inclined sections, metallic frame support, and collection bin for material handling.',
-    image: '/photos/belt-assembly-system-3d-render.jpg',
+    image: '/photos/12.jpg',
     category: 'Industrial Systems',
     year: '2023',
     status: 'Completed',
@@ -235,7 +243,7 @@ export const designProjects: DesignProject[] = [
       'Material Handling'
     ],
     tools: ['SolidWorks', 'Belt Assembly Design', 'Structural Analysis', 'CAD Modeling'],
-    gallery: ['/photos/belt-assembly-system-3d-render.jpg'],
+    gallery: [''],
     featured: true,
     order: 4
   },
@@ -317,9 +325,10 @@ export const designProjects: DesignProject[] = [
     ],
     tools: ['SolidWorks', 'Technical Drawing', 'Engineering Documentation', 'CAD Drafting', 'Assembly Design'],
     gallery: [
-      '/photos/Drawings/assembly_53802756962_l.jpg',
       '/photos/Drawings/belt-and-pully_53804126360_l.jpg',
-      '/photos/Drawings/monte_53803688821_l.jpg'
+      '/photos/Drawings/monte_53803688821_l.jpg',
+      '/photos/Drawings/assembly_53802756962_l.jpg',
+
     ],
     featured: true,
     order: 7
@@ -340,7 +349,7 @@ export const designProjects: DesignProject[] = [
       'Safety Features'
     ],
     tools: ['SolidWorks', 'Industrial Design', 'Mechanical Analysis', 'Safety Engineering', 'CAD Modeling'],
-    gallery: ['/photos/shredder machine.jpg'],
+    gallery: [''],
     featured: true,
     order: 8
   },
@@ -360,63 +369,49 @@ export const designProjects: DesignProject[] = [
       'Durability Design'
     ],
     tools: ['SolidWorks', 'Product Design', 'Security Engineering', 'Precision Design', 'CAD Modeling'],
-    gallery: ['/photos/pad lock.jpg'],
+    gallery: [''],
     featured: true,
     order: 9
+  },
+  {
+    id: 'design-10',
+    title: 'Automated Tipper',
+    description: 'Detailed mechanical design with precision components.',
+    image: '/photos/Automated tippr/1_53804131305_l.jpg',
+    category: 'Product Design',
+    year: '2023',
+    status: 'Completed',
+    specifications: [
+      'Security Mechanism',
+      'Precision Components',
+      'Robust Construction',
+      'Locking Functionality',
+      'Durability Design'
+    ],
+    tools: ['SolidWorks', 'Product Design', 'Security Engineering', 'Precision Design', 'CAD Modeling'],
+    gallery: ['/photos/Automated tippr/podvozek_53803938243_l.jpg', '/photos/Automated tippr/rez-vrchnima-ustrojima_53803693011_l.jpg', '/photos/Automated tippr/1_53804131305_l.jpg'],
+    featured: true,
+    order: 10
+  },
+  { 
+    id: 'design-11',
+    title: 'Mechanical Assembly',
+    description: 'Detailed mechanical design with mechanism assembly.',
+    image: '/photos/13.jpg',
+    category: 'Product Design',
+    year: '2023',
+    status: 'Completed',
+    specifications: [
+      'Security Mechanism',
+      'Precision Components',
+      'Robust Construction',
+      'Locking Functionality',
+      'Durability Design'
+    ],
+    tools: ['SolidWorks', 'Product Design', 'Security Engineering', 'Precision Design', 'CAD Modeling'],
+    gallery: [''],
+    featured: true,
+    order: 11
   }
 ]
 
-// Helper functions for managing projects
-export const addProject = (project: Omit<Project, 'id'>): Project => {
-  const newProject: Project = {
-    ...project,
-    id: `proj-${Date.now()}`
-  }
-  featuredProjects.push(newProject)
-  return newProject
-}
-
-export const updateProject = (id: string, updates: Partial<Project>): boolean => {
-  const index = featuredProjects.findIndex(proj => proj.id === id)
-  if (index !== -1) {
-    featuredProjects[index] = { ...featuredProjects[index], ...updates }
-    return true
-  }
-  return false
-}
-
-export const deleteProject = (id: string): boolean => {
-  const index = featuredProjects.findIndex(proj => proj.id === id)
-  if (index !== -1) {
-    featuredProjects.splice(index, 1)
-    return true
-  }
-  return false
-}
-
-export const addDesignProject = (project: Omit<DesignProject, 'id'>): DesignProject => {
-  const newProject: DesignProject = {
-    ...project,
-    id: `design-${Date.now()}`
-  }
-  designProjects.push(newProject)
-  return newProject
-}
-
-export const updateDesignProject = (id: string, updates: Partial<DesignProject>): boolean => {
-  const index = designProjects.findIndex(proj => proj.id === id)
-  if (index !== -1) {
-    designProjects[index] = { ...designProjects[index], ...updates }
-    return true
-  }
-  return false
-}
-
-export const deleteDesignProject = (id: string): boolean => {
-  const index = designProjects.findIndex(proj => proj.id === id)
-  if (index !== -1) {
-    designProjects.splice(index, 1)
-    return true
-  }
-  return false
-}

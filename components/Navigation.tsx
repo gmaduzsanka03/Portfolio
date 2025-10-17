@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sun, Moon, Monitor, Settings } from 'lucide-react'
+import { Menu, X, Sun, Moon, Monitor } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
-import { useAdmin } from './AdminContext'
 
 const navItems = [
   { name: 'About', href: '#about' },
@@ -20,7 +19,6 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { theme, setTheme } = useTheme()
-  const { isAdmin, toggleAdmin } = useAdmin()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,23 +100,8 @@ export function Navigation() {
             </div>
           </div>
 
-          {/* Admin Toggle, Theme Toggle & Mobile Menu Button */}
+          {/* Theme Toggle & Mobile Menu Button */}
           <div className="flex items-center space-x-4">
-            {/* Admin Toggle */}
-            <motion.button
-              onClick={toggleAdmin}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className={`p-2 rounded-lg transition-colors duration-200 ${
-                isAdmin 
-                  ? 'bg-primary-600 text-white' 
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-              }`}
-              title={isAdmin ? 'Exit Admin Mode' : 'Enter Admin Mode'}
-            >
-              <Settings className="h-5 w-5" />
-            </motion.button>
-
             <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: 1.1 }}

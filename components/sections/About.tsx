@@ -99,13 +99,43 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Right Column - Values Grid */}
+          {/* Right Column - Profile Image and Values Grid */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="grid grid-cols-2 gap-6"
+            className="space-y-8"
           >
+            {/* Profile Image */}
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={inView ? { scale: 1 } : {}}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="text-center"
+            >
+              <div className="w-48 h-48 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-white dark:ring-gray-800">
+                <img
+                  src="/images/profile-image.jpg"
+                  alt="W.G.M. Welikumbura - Professional Portrait"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to initials if image fails to load
+                    e.currentTarget.style.display = 'none'
+                    const fallback = e.currentTarget.nextElementSibling as HTMLElement
+                    if (fallback) fallback.style.display = 'flex'
+                  }}
+                />
+                <div 
+                  className="w-full h-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-3xl font-bold"
+                  style={{ display: 'none' }}
+                >
+                  WGM
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Values Grid */}
+            <div className="grid grid-cols-2 gap-6">
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
@@ -125,6 +155,7 @@ export function About() {
                 </p>
               </motion.div>
             ))}
+            </div>
           </motion.div>
         </div>
 

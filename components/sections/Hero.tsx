@@ -34,15 +34,31 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          {/* Profile Image Placeholder */}
+          {/* Profile Image */}
           <motion.div
             initial={{ scale: 0 }}
             animate={inView ? { scale: 1 } : {}}
             transition={{ delay: 0.2, duration: 0.5 }}
             className="mb-8"
           >
-            <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-4xl font-bold shadow-2xl">
-              WGM
+            <div className="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-white dark:ring-gray-800">
+              <img
+                src="/images/profile-image.jpg"
+                alt="W.G.M. Welikumbura - Professional Portrait"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  // Fallback to initials if image fails to load
+                  e.currentTarget.style.display = 'none'
+                  const fallback = e.currentTarget.nextElementSibling as HTMLElement
+                  if (fallback) fallback.style.display = 'flex'
+                }}
+              />
+              <div 
+                className="w-full h-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-4xl font-bold"
+                style={{ display: 'none' }}
+              >
+                WGM
+              </div>
             </div>
           </motion.div>
 

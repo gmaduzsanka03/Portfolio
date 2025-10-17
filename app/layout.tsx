@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import { AdminProvider } from '@/components/AdminContext'
 import { Navigation } from '@/components/Navigation'
 import { FloatingDownloadButton } from '@/components/DownloadResumeButton'
 
@@ -29,13 +28,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider>
-          <AdminProvider>
-            <Navigation />
-            <main className="min-h-screen">
-              {children}
-            </main>
-            <FloatingDownloadButton />
-          </AdminProvider>
+          <Navigation />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <FloatingDownloadButton />
         </ThemeProvider>
       </body>
     </html>

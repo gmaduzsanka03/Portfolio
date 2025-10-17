@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { GraduationCap, Award, BookOpen, Users, Calendar, MapPin, Download, ExternalLink, ChevronRight, ChevronDown } from 'lucide-react'
 import { certifications } from '../../data/certifications'
-import { useAdmin } from '../AdminContext'
 import { useState } from 'react'
 
 export function Education() {
@@ -13,7 +12,6 @@ export function Education() {
     threshold: 0.1,
   })
 
-  const { isAdmin } = useAdmin()
   const [showAllCertifications, setShowAllCertifications] = useState(false)
 
   const education = [
