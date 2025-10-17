@@ -131,7 +131,7 @@ export function Organizations() {
         </div>
 
         {/* Admin Add Button */}
-        {isAdmin && (
+        {false && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
